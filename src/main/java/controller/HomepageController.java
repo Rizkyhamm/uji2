@@ -5,6 +5,7 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -51,27 +52,29 @@ public class HomepageController implements Initializable {
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) {
-        /*
+    private void handleLogin(ActionEvent event) throws IOException {
+        
+        Stage stage = (Stage) btnLogin.getScene().getWindow();
         URL url = new File("src/main/java/view/Login.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Login");
         stage.show();
-        */
+        
     }
 
     @FXML
-    private void handleSignUp(ActionEvent event) {
-        /*
+    private void handleSignUp(ActionEvent event) throws IOException {
+        
+        Stage stage = (Stage) btnSignup.getScene().getWindow();
         URL url = new File("src/main/java/view/Signup.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Signup");
         stage.show();
-        */
+        
     }
     
 }

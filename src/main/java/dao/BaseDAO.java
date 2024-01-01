@@ -14,7 +14,7 @@ import java.sql.DriverManager;
  */
 public class BaseDAO {
 
-    private static String DB_NAME = "diary";
+    private static String DB_NAME = "equals";
     private static String DB_HOST = "localhost";
     private static String DB_USER = "root";
     private static String DB_PASS = "";
