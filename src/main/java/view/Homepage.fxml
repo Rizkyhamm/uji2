@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="65.0" fitWidth="80.0" layoutX="31.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../Downloads/tryequals/res/equalslogo.png" />
+                  <Image url="@../../../../res/equalslogo.png" />
                </image>
             </ImageView>
             <Button fx:id="btnAboutUs" layoutX="495.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleAboutUs" text="About Us" textFill="#ada7f1" />

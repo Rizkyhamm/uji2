@@ -71,10 +71,15 @@ public class SignupController implements Initializable {
     String email = txtEmail.getText();
     String username = txtUsername.getText();
     String password = txtPassword.getText();
-    User u = new User(name,dob,gender,email,username, password);
-    UserDAO.register(u);
-    JOptionPane.showMessageDialog(null, " Registered " + username + " Successfully. Please Login!");
-    Stage stage = (Stage) btnSignup.getScene().getWindow();
+    try{
+        User u = new User(name,dob,gender,email,username, password);
+        UserDAO.register(u);
+        JOptionPane.showMessageDialog(null, " Registered " + username + " Successfully. Please Login!");
+        Stage stage = (Stage) btnSignup.getScene().getWindow();  
+    } catch (SQLException) {
+        System.err.print("Error inserting data: " + ex.getMessage());
+        System.exit(1);
+    }
     URL url = new File("src/main/java/view/Homepage.fxml").toURI().toURL();
     Parent root = FXMLLoader.load(url);
     Scene scene = new Scene(root);

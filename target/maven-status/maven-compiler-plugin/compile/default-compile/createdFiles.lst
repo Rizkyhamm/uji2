@@ -1,9 +1,0 @@
-controller\DashboardAdminController.class
-controller\LoginController.class
-main\Uji2.class
-controller\HomepageController.class
-dao\UserDAO.class
-model\Coach.class
-dao\BaseDAO.class
-model\Person.class
-model\User.class
