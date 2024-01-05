@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: f7f0f5;">
          <children>
             <ImageView fitHeight="65.0" fitWidth="80.0" layoutX="261.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/equalslogo.png" />
+                  <Image url="@../../../../../../../Downloads/tryequals/res/equalslogo.png" />
                </image>
             </ImageView>
             <Label layoutX="267.0" layoutY="120.0" text="Login" textFill="#ada7f1">
@@ -39,7 +39,7 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnLogin" layoutX="278.0" layoutY="272.0" mnemonicParsing="false" text="Login" />
+            <Button fx:id="btnLogin" layoutX="278.0" layoutY="272.0" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
          </children>
       </AnchorPane>
    </children>

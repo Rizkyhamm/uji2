@@ -13,7 +13,7 @@ import java.util.UUID;
 
 
 public class Person {
-    UUID uid;
+    private UUID uid;
     private String nama;
     private Date tanggalLahir;
     private String gender;

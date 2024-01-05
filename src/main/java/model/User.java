@@ -15,7 +15,7 @@ public class User extends Person {
      public User(String nama,Date tanggalLahir, String gender,String email,String username, String password) {
         super(nama,tanggalLahir,gender,email,username,password);
         UUID uuid = UUID.randomUUID();
-        this.setUid(uid);
+        this.setUid(uuid);
     }
      public User(UUID uid, String nama,Date tanggalLahir, String gender,String email,String username, String password) {
         super(uid,nama,tanggalLahir,gender,email,username,password);

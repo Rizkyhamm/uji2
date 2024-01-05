@@ -67,19 +67,23 @@ public class SignupController implements Initializable {
     String name = txtNama.getText();
     Date dob =  Date.valueOf(dateDOB.getValue()); 
     //String gender = genderUser.getValue();
-    String gender = "a";
+    String gender;
+    if(genderUser.getSelectedToggle().equals(btnLk)){
+        gender = "Laki-laki";
+    }
+    else{
+        gender = "Perempuan";
+    }
+    
+    
     String email = txtEmail.getText();
     String username = txtUsername.getText();
     String password = txtPassword.getText();
-    try{
-        User u = new User(name,dob,gender,email,username, password);
-        UserDAO.register(u);
-        JOptionPane.showMessageDialog(null, " Registered " + username + " Successfully. Please Login!");
-        Stage stage = (Stage) btnSignup.getScene().getWindow();  
-    } catch (SQLException) {
-        System.err.print("Error inserting data: " + ex.getMessage());
-        System.exit(1);
-    }
+    User u = new User(name,dob,gender,email,username, password);
+    UserDAO userDAO = new UserDAO();
+    userDAO.register(u);
+    JOptionPane.showMessageDialog(null, " Registered " + username + " Successfully. Please Login!");
+    Stage stage = (Stage) btnSignup.getScene().getWindow();
     URL url = new File("src/main/java/view/Homepage.fxml").toURI().toURL();
     Parent root = FXMLLoader.load(url);
     Scene scene = new Scene(root);

@@ -17,13 +17,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignupController">
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controller.SignupController">
    <children>
       <AnchorPane layoutX="4.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: f7f0f5;">
          <children>
             <ImageView fitHeight="65.0" fitWidth="80.0" layoutX="262.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/equalslogo.png" />
+                  <Image url="@../../../../../../../Downloads/tryequals/res/equalslogo.png" />
                </image>
             </ImageView>
             <Label layoutX="259.0" layoutY="79.0" text="Signup" textFill="#ada7f1">
