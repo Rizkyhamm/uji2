@@ -40,15 +40,14 @@ public class HomepageController implements Initializable {
     }    
 
     @FXML
-    private void handleAboutUs(ActionEvent event) {
-        /*
-        URL url = new File("src/main/java/view/Login.fxml").toURI().toURL();
+    private void handleAboutUs(ActionEvent event) throws IOException{
+        Stage stage = (Stage) btnAboutUs.getScene().getWindow();
+        URL url = new File("src/main/java/view/AboutUS.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Online Diary");
+        stage.setTitle("About Us");
         stage.show();
-        */
     }
 
     @FXML
@@ -65,7 +64,7 @@ public class HomepageController implements Initializable {
     }
 
     @FXML
-    private void handleSignUp(ActionEvent event) throws IOException {
+    private void SignUpHandler(ActionEvent event) throws IOException {
         
         Stage stage = (Stage) btnSignup.getScene().getWindow();
         URL url = new File("src/main/java/view/Signup.fxml").toURI().toURL();

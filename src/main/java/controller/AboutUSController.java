@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
@@ -23,27 +22,19 @@ import javafx.stage.Stage;
  *
  * @author ASUS Vivobook
  */
-public class LoginController implements Initializable {
-
-    @FXML
-    private Button btnAboutUs;
-
-    @FXML
-    private Button btnLogin;
-
-    @FXML
-    private TextField txtPassword;
-
-    @FXML
-    private TextField txtUsername;
+public class AboutUSController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    
+    @FXML
+    private Button btnAboutUs;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
     
      @FXML
     void handleAboutUs(ActionEvent event) throws IOException {
@@ -55,4 +46,5 @@ public class LoginController implements Initializable {
         stage.setTitle("Equals  ");
         stage.show();
     }
+    
 }

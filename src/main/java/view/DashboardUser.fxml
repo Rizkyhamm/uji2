@@ -1,81 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DashboardUserController">
-    <stylesheets>
-        <URL value="@dashboarduser.css" />
-    </stylesheets>
-   <children>
-      <Pane layoutX="51.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: fb6f92;">
-               <children>
-                  <Pane layoutX="115.0" layoutY="31.0" opacity="0.69" prefHeight="203.0" prefWidth="45.0" rotate="159.0" style="-fx-background-color: ff8fab;" />
-                  <Pane layoutX="-23.0" layoutY="-46.0" opacity="0.69" prefHeight="184.0" prefWidth="47.0" rotate="159.0" style="-fx-background-color: ff8fab;" />
-                  <Pane layoutX="47.0" layoutY="2.0" opacity="0.69" prefHeight="184.0" prefWidth="47.0" rotate="159.0" style="-fx-background-color: ff8fab;" />
-                  <Label layoutX="70.0" layoutY="89.0" prefHeight="51.0" prefWidth="315.0" text="Selamat Datang di Equals !">
-                     <font>
-                        <Font name="Arial Bold" size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="70.0" layoutY="125.0" prefHeight="51.0" prefWidth="315.0" text="Sejajar Sejahtera: Bersama Menuju Kesetaraan Gender">
-                     <font>
-                        <Font name="Arial Italic" size="12.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="rekomendasi" layoutX="71.0" layoutY="176.0" prefHeight="189.0" prefWidth="490.0">
-                    <columns>
-                      <TableColumn prefWidth="489.0" />
-                    </columns>
-                  </TableView>
-                  <Pane layoutX="479.0" layoutY="339.0" prefHeight="28.0" prefWidth="84.0" style="-fx-background-color: FB6F92;">
-                     <children>
-                        <Button fx:id="Lanjut_Button" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" style="-fx-background-color: FFFF;" text="Lanjut" />
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane prefHeight="59.0" prefWidth="600.0" style="-fx-background-color: ffff;">
-         <children>
-            <HBox layoutX="231.0" layoutY="-1.0" prefHeight="59.0" prefWidth="293.0" style="-fx-background-color: FFFF;">
-               <children>
-                  <Button fx:id="Home_Button" mnemonicParsing="false" prefHeight="69.0" prefWidth="55.0" style="-fx-background-color: FFFF;" text="Home" underline="true">
-                     <font>
-                        <Font name="Arial Bold" size="22.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="Training_Button" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="67.0" style="-fx-background-color: FFFF;" text="Training">
-                     <font>
-                        <Font name="Arial Bold" size="13.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" layoutX="433.0" layoutY="-3.0" prefHeight="65.0" prefWidth="167.0">
-               <children>
-                  <Button fx:id="Profile_button" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="56.0" prefWidth="70.0" style="-fx-background-color: FFFF;" text="Profile" />
-                  <Button fx:id="LogOut_Button" alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="70.0" style="-fx-background-color: FFFF;" text="LogOut" />
-               </children>
-            </HBox>
-            <ImageView fitHeight="59.0" fitWidth="127.0" layoutX="68.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/Group%205.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardUserController">
+    
 </AnchorPane>

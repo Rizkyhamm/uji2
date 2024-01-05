@@ -56,7 +56,7 @@ public class UserDAO {
     }
     public void register(User user){
         try{
-            query = "INSERT INTO users VALUES('%s','%s','%s','%s','%s','%s','%s')";
+            query = "INSERT INTO user VALUES('%s','%s','%s','%s','%s','%s','%s','%s')";
             query = String.format(query,user.getUid(),user.getNama(), user.getEmail(),user.getGender(),user.getTanggalLahir(),user.getUsername(),user.getPassword());
             stmt.executeUpdate(query);
             System.out.println("Berhasil menambahkan data!");
@@ -144,7 +144,7 @@ public class UserDAO {
     }*/
     public void delete(User user){
         try{
-            query = "DELETE FROM users WHERE nama = '%s'";
+            query = "DELETE FROM user WHERE nama = '%s'";
             query = String.format(query,user.getNama());
             stmt.executeUpdate(query);
             System.out.println("Berhasil menghapus data!");   
