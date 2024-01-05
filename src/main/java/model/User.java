@@ -14,7 +14,7 @@ import java.util.UUID;
 public class User extends Person {
      public User(String nama,Date tanggalLahir, String gender,String email,String username, String password) {
         super(nama,tanggalLahir,gender,email,username,password);
-        UUID uuid = UUID.randomUUID();
+        UUID uid = UUID.randomUUID();
         this.setUid(uid);
     }
      public User(UUID uid, String nama,Date tanggalLahir, String gender,String email,String username, String password) {

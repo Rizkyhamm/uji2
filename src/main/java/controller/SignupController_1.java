@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.CoachDAO;
 import dao.UserDAO;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Coach;
 import model.User;
 
 /**
@@ -34,7 +36,7 @@ import model.User;
  *
  * @author Dewi
  */
-public class SignupController implements Initializable {
+public class SignupController_1 implements Initializable {
 
     @FXML
     private TextField txtNama;
@@ -54,6 +56,8 @@ public class SignupController implements Initializable {
     private ToggleGroup genderUser;
     @FXML
     private TextField txtUsername;
+    @FXML
+    private TextField txtPengalaman;
 
     /**
      * Initializes the controller class.
@@ -80,9 +84,10 @@ public class SignupController implements Initializable {
     String email = txtEmail.getText();
     String username = txtUsername.getText();
     String password = txtPassword.getText();
-    User u = new User(name,dob,gender, email,username, password);
-    UserDAO userDAO = new UserDAO();
-    userDAO.register(u);
+    String pengalaman = txtPengalaman.getText();
+    Coach c = new Coach(name,dob,gender, email,username, password, pengalaman);
+    CoachDAO coachDAO = new CoachDAO();
+    coachDAO.register(c);
     JOptionPane.showMessageDialog(null, " Registered " + username + " Successfully. Please Login!");
     Stage stage = (Stage) btnSignup.getScene().getWindow();
     URL url = new File("src/main/java/view/Homepage.fxml").toURI().toURL();

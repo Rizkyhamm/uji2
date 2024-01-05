@@ -11,86 +11,17 @@ import java.util.UUID;
  * @author Dewi
  */
 
-public class Coach {
-    private UUID cid;
-    private String us;
-    private String pw;
-    private String nama;
-    private String gender;
-    private String usia;
+public class Coach extends Person {
     private String pengalaman;
-
-    public Coach(String us,String pw,String nama,String gender,String usia,String pengalaman) {
-        this.setUs(us);
-        this.setPw(pw);
-        this.setNama(nama);
-        this.setGender(gender);
-        this.setUsia(usia);
+    public Coach(String nama,Date tanggalLahir, String gender,String email,String username, String password, String pengalaman) {
+        super(nama,tanggalLahir,gender,email,username,password);
+        UUID uid = UUID.randomUUID();
+        this.setUid(uid);
         this.setPengalaman(pengalaman);
-        UUID uuid = UUID.randomUUID();
-        this.setCid(uuid);
     }
-    
-    
-    public Coach(UUID cid,String us,String pw,String nama,String gender,String usia,String pengalaman) {
-        this.setCid(cid);
-        this.setUs(us);
-        this.setPw(pw);
-        this.setNama(nama);
-        this.setGender(gender);
-        this.setUsia(usia);
+     public Coach(UUID uid, String nama,Date tanggalLahir, String gender,String email,String username, String password, String pengalaman) {
+        super(uid,nama,tanggalLahir,gender,email,username,password);
         this.setPengalaman(pengalaman);
-        //UUID uuid = UUID.randomUUID(); 
-    }
-
-    public UUID getCid() {
-        return cid;
-    }
-
-    public void setCid(UUID cid) {
-        this.cid = cid;
-    }
-
-    
-
-    public String getUs() {
-        return us;
-    }
-
-    public void setUs(String us) {
-        this.us = us;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getUsia() {
-        return usia;
-    }
-
-    public void setUsia(String usia) {
-        this.usia = usia;
     }
 
     public String getPengalaman() {

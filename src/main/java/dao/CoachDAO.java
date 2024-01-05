@@ -5,146 +5,149 @@
 
 
 package dao;
-import model.Coach;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.UUID;
-//import model.User;
 
-import dao.BaseDAO;
 import static dao.BaseDAO.closeCon;
 import static dao.BaseDAO.getCon;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.LinkedList;
+import java.sql.Statement;
 import java.util.UUID;
+import model.Coach;
 
-/**
- *
- * @author Dewi
- */
-
-/*
-public class CoachDAO extends BaseDAO {
-
-    private static PreparedStatement st;
+public class CoachDAO {
+    private String url;
+    private String uname;
+    private String pass;
+    private String query;
     private static Connection con;
+    private static Statement stmt;
+    private static PreparedStatement st;
     
-    public static void insertEntry(Coach c) {
+    public CoachDAO(){
+        url="jdbc:mysql://localhost/equals";
+        uname="root";
+        pass="";
+        setConnectionAndStatement();
         
-        try {
+    }
+    private void setConnectionAndStatement(){
+        try{
+            con=DriverManager.getConnection(url,uname,pass);
+            stmt=con.createStatement();
             
-            String query = "insert into stories (cid, us,pw,nama,gender,usia,pengalaman) "
-                    + " values ('%s', '%s', '%s','%s','%s','%s','%s') ";
-            query = String.format(query, 
-                    c.getCid(),
-                    c.getUs(),
-                    c.getPw(),
-                    c.getNama(),
-                    c.getGender(),
-                    c.getUsia(),
-                    c.getPengalaman()
-                    );
-            con = getCon();
-            st = con.prepareStatement(query);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeCon(con);
+        }
+        catch(SQLException ex){
+            System.err.print(ex.getMessage());
+            System.exit(1);
         }
     }
-
-    public static void updateEntry(Coach c, Coach old) {
-        try {
-            con = getCon();
-            String query = " update stories set sdate = '%s', descrip = '%s' "
-                    + "where uid like '%s' and sdate = '%s' and descrip like '%s' ";
-            query = String.format(query, 
-                    s.getSdate(),
-                    s.getDescrip(),
-                    old.getOwner().getUid(),
-                    old.getSdate(),
-                    old.getDescrip());
-            st = con.prepareStatement(query);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeCon(con);
+    public void register(Coach coach){
+        try{
+            query = "INSERT INTO coaches VALUES('%s','%s','%s','%s','%s','%s','%s','%s')";
+            query = String.format(query,coach.getUid(),coach.getNama(), coach.getEmail(),coach.getGender(),coach.getTanggalLahir(),coach.getUsername(),coach.getPassword(), coach.getPengalaman());
+            stmt.executeUpdate(query);
+            System.out.println("Berhasil menambahkan data!");
+        }
+        catch(SQLException ex){
+            System.err.print("Error inserting data:"+ex.getMessage());
+            System.exit(1);
         }
     }
-
-    public static LinkedList<Story> getAll(User u) {
-        LinkedList<Story> res = new LinkedList<>();
+    
+    public static Coach validate(String username, String password) {
+        Coach c = null;
         try {
             con = getCon();
-            String query = "select * from stories "
-                    + "where uid = '%s'";
-
-            query = String.format(query, u.getUid().toString());
+            String query = "select * from coaches where uname = '%s' and pword = '%s' ";
+            query = String.format(query,
+                    username,
+                    password);
             st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Story s = new Story(UUID.fromString(rs.getString("sid")),
-                            rs.getDate("sdate"),
-                            rs.getString("descrip"),
-                            u);
-                res.add(s);
+            if (rs.next()) {
+                c = new Coach(UUID.fromString(rs.getString("cid"))
+                        ,rs.getString("name")
+                        ,rs.getDate("dob")
+                        ,rs.getString("gender")
+                        ,rs.getString("email")
+                        , username
+                        , password
+                ,rs.getString("pengalaman"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             closeCon(con);
         }
-        return res;
+        return c;
     }
+    
+    public static Coach searchByUid(String uid) {
+    Coach c = null;
+    try {
+        con = getCon();
+        String query = "select * from coaches where uid = '%s'";
+        query = String.format(query, uid);
 
+        st = con.prepareStatement(query);
+        ResultSet rsUser = st.executeQuery();
+        c = new Coach(UUID.fromString(rsUser.getString("cid")),rsUser.getString("nama"),rsUser.getDate("dob"),rsUser.getString("gender"),rsUser.getString("email"),
+                rsUser.getString("uname"), rsUser.getString("pword"),rsUser.getString("pengalaman"));
 
-    public static void removeEntry(Story s) {
-        try {
-            con = getCon(); 
-            String query = "delete from stories"
-                    + " where uid like '%s' and descrip like '%s' ";
-            query = String.format(query, s.getOwner().getUid(),
-                    s.getDescrip());
-            st = con.prepareStatement(query);
-            st.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeCon(con);
-        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        closeCon(con);
     }
-
-    public static LocalDate getDate(UUID uid, String desc) {
-        LocalDate res = null;
-        try {
-            con = getCon(); 
-            String query = "select sdate from stories "
-                + " where uid like '%s' and descrip like '%s' ";
-            query = String.format(query, 
-                    uid,
-                    desc);
-            st = con.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                res = rs.getDate("sdate").toLocalDate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeCon(con);
-        }
-        return res;
-    }
-
+    return c;
 }
-*/
+    
+    /*public User get(String nama, String password){
+        User u = null;
+        //boolean login=false;
+        try{
+            String query = "SELECT * FROM user WHERE nama='&s' AND password='&s'";
+            query = String.format(query, nama,password);
+            ResultSet rs = stmt.executeQuery(query);
+            
+            if(rs.next()!=false){
+                u = new User(
+                        u.setUid(rs.getString("uid")),
+                        u.setNama(rs.getString("nama")),
+                        u.setTanggalLahir(rs.getString("tanggalLahir")),
+                        u.setGender(rs.getString("gender")),
+                        u.setEmail(rs.getString("email")),
+                        u.setUsername(rs.getString("username")),
+                        u.setPassword(rs.getString("password")));
+                //user.setNama(rs.getString("nama"));
+                //user.setGender(rs.getString("gender"));
+                //user.setUsia(rs.getString("usia"));
+                //user.setPassword(rs.getString("password"));
+                //user.setLogin(true);
+                
+            }else{
+               //user.setLogin(false);
+               System.out.print("data tidak ditemukan");
+            }
+        }catch(SQLException ex){
+            System.err.print("Error getting the data: "+ex.getMessage());
+            System.exit(1);
+        }
+        return u;
+    }*/
+    public void delete(Coach coach){
+        try{
+            query = "DELETE FROM coaches WHERE name = '%s'";
+            query = String.format(query,coach.getNama());
+            stmt.executeUpdate(query);
+            System.out.println("Berhasil menghapus data!");   
+        }
+        catch(SQLException ex){
+            System.err.print("Error getting the data: "+ex.getMessage());
+            System.exit(1);
+        }
+    }
+}

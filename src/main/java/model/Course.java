@@ -3,19 +3,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-import model.User;
+
 import java.util.UUID;
 
 /**
  *
- * @author LENOVO
+ * @author Dewi
  */
 public class Course {
-   private UUID coid;
-   private String namaCourse;
-   private int kuota;
-   private User owner;
+    private UUID coid;
+    private String nama;
+    private int kuota;
+    private String materi;
+    private String soal;
+    private Coach pembuat;
 
+    public String getMateri() {
+        return materi;
+    }
+
+    public void setMateri(String materi) {
+        this.materi = materi;
+    }
+
+    public String getSoal() {
+        return soal;
+    }
+
+    public void setSoal(String soal) {
+        this.soal = soal;
+    }
+    
+    
+    
     public UUID getCoid() {
         return coid;
     }
@@ -24,12 +44,12 @@ public class Course {
         this.coid = coid;
     }
 
-    public String getNamaCourse() {
-        return namaCourse;
+    public String getNama() {
+        return nama;
     }
 
-    public void setNamaCourse(String namaCourse) {
-        this.namaCourse = namaCourse;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public int getKuota() {
@@ -40,21 +60,36 @@ public class Course {
         this.kuota = kuota;
     }
 
-    public Course(String namaCourse, int kuota, User owner) {
-        this.namaCourse = namaCourse;
+    public Coach getPembuat() {
+        return pembuat;
+    }
+
+    public void setPembuat(Coach pembuat) {
+        this.pembuat = pembuat;
+    }
+
+    public Course(String nama, int kuota, Coach pembuat, String materi, String soal) {
+        this.nama = nama;
+        this.kuota = kuota;
+        this.pembuat = pembuat;
+        this.materi= materi;
+        this.soal=soal;
         UUID coid = UUID.randomUUID();
         this.setCoid(coid);
-        this.kuota = kuota;
-        this.owner = owner;
-    }
     
-    public Course(UUID coid, String namaCourse, int kuota, User owner) {
+    }
+
+    public Course(UUID coid, String nama, int kuota, Coach pembuat, String materi, String soal) {
         this.coid = coid;
-        this.namaCourse = namaCourse;
+        this.nama = nama;
         this.kuota = kuota;
-        this.owner = owner;
+        this.pembuat = pembuat;
+        this.materi= materi;
+        this.soal=soal;
     }
     
     
-   
+    
+    
+    
 }

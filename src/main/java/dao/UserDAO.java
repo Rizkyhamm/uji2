@@ -56,7 +56,7 @@ public class UserDAO {
     }
     public void register(User user){
         try{
-            query = "INSERT INTO user VALUES('%s','%s','%s','%s','%s','%s','%s','%s')";
+            query = "INSERT INTO users VALUES('%s','%s','%s','%s','%s','%s','%s')";
             query = String.format(query,user.getUid(),user.getNama(), user.getEmail(),user.getGender(),user.getTanggalLahir(),user.getUsername(),user.getPassword());
             stmt.executeUpdate(query);
             System.out.println("Berhasil menambahkan data!");
@@ -67,19 +67,24 @@ public class UserDAO {
         }
     }
     
-    public static User validate(String name, String passwd) {
+    public static User validate(String username, String password) {
         User u = null;
         try {
             con = getCon();
-            String query = "select uid from users where uname = '%s' and pword = '%s' ";
+            String query = "select * from users where uname = '%s' and pword = '%s' ";
             query = String.format(query,
-                    name,
-                    passwd);
+                    username,
+                    password);
             st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                u = new User(UUID.fromString(rs.getString("uid")),rs.getString("nama"),rs.getDate("dob"),rs.getString("gender"),rs.getString("email"),
-                rs.getString("uname"), rs.getString("pword"));
+                u = new User(UUID.fromString(rs.getString("uid"))
+                        ,rs.getString("name")
+                        ,rs.getDate("dob")
+                        ,rs.getString("gender")
+                        ,rs.getString("email")
+                        , username
+                        , password);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,16 +94,18 @@ public class UserDAO {
         return u;
     }
     
-    public static User searchByUid(String uid) {
+    public static User searchByUid(String username, String password) {
     User u = null;
     try {
         con = getCon();
-        String query = "select * from users where uid = '%s'";
-        query = String.format(query, uid);
+        String query = "select * from users where uname = '%s' and pword = '%s'";
+        query = String.format(query,
+                    username,
+                    password);
 
         st = con.prepareStatement(query);
         ResultSet rsUser = st.executeQuery();
-        u = new User(UUID.fromString(rsUser.getString("uid")),rsUser.getString("nama"),rsUser.getDate("dob"),rsUser.getString("gender"),rsUser.getString("email"),
+        u = new User(UUID.fromString(rsUser.getString("uid")),rsUser.getString("name"),rsUser.getDate("dob"),rsUser.getString("gender"),rsUser.getString("email"),
                 rsUser.getString("uname"), rsUser.getString("pword"));
 
     } catch (SQLException e) {
@@ -144,7 +151,7 @@ public class UserDAO {
     }*/
     public void delete(User user){
         try{
-            query = "DELETE FROM user WHERE nama = '%s'";
+            query = "DELETE FROM users WHERE nama = '%s'";
             query = String.format(query,user.getNama());
             stmt.executeUpdate(query);
             System.out.println("Berhasil menghapus data!");   
